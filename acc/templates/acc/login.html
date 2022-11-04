@@ -1,0 +1,17 @@
+{% extends 'core/home.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+<div style="margin-top: 150px;">
+    <div class="container" >
+        <div class="card" style="background-color: rgb(219, 224, 167);">
+            <h1 style="color: green;"><i class="fa-solid fa-user"></i>LOGIN</h1>
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" class="btn btn-primary">login</button>
+            <p>to regist plz click <a href="{% url 'register' %}">here....</a></p>
+        </div>
+        
+    </div>
+</div>
+{% endblock content %}
+    
