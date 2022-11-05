@@ -153,8 +153,19 @@
                         <td scope="row">{{s.qty}}</td>
                         <td scope="row">{{s.total}}</td>
                       </tr>               
+                      
                       {% endfor %}
                   </tbody>
+                  <tfoot>
+                    <tr>
+                      <td scope="row">TOTAL</td>
+                      <td scope="row" ></td>
+                      <td scope="row" ></td>
+                      <td scope="row" ></td>
+                      <td scope="row" ></td>
+                      <td scope="row" >{{total_sales}}</td>
+                    </tr>
+                  </tfoot>
                 </table>
               </div>
             </div>

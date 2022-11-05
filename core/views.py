@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import CategoryModel, SaleModel, StoreModel
 from .forms import SaleForm
-
+import math
 # Create your views here.
 
 
@@ -9,6 +9,12 @@ def home(request):
     cat = CategoryModel.objects.all()
     st = StoreModel.objects.all()
     sales = SaleModel.objects.all()
+    
+    
+    
+    
+    
+    
     
     
     for x in st:
@@ -19,7 +25,7 @@ def home(request):
             x.save()
             
       
-        print(total)  
+       
      
    
          
@@ -28,6 +34,36 @@ def home(request):
         total = float(s.qty*s.sale_price)
         s.total=total
         s.save()
+        
+        
+        
+    # for co in sales:
+    #     ss =sum(float(co.total))
+    #     print(ss)
+        
+        
+    total_sales= sum(float(co.total) for co in sales)
+        
+    
+        # ssss = math.fsum(sss)    
+        # print(ssss)
+       
+    
+       
+            
+           
+        # to_sa = math.fsum(ss)
+        # print(to_sa)
+        
+        
+        
+        
+        # for u in ss:
+        #     to_sa = sum(u)
+        #     print(to_sa)
+        
+        
+
     
     
     
@@ -35,6 +71,7 @@ def home(request):
         'cat':cat,
         'st':st,
         'sales':sales,
+        'total_sales':total_sales,
         })
     
     
