@@ -16,13 +16,17 @@
 
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Offcanvas dark navbar</a>
+          <a class="navbar-brand" href="">
+            <img src="/static/images/bacsan-logo.jpg" width="30" height="30" alt="">
+          </a>
+          <a class="navbar-brand" style="color:#FF5733;" href="{% url 'home' %}"> <h1> BACSAN CO.</h1></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
+              <img src="/static/images/bacsan-logo.jpg" width="30" height="30" alt="">
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">welcome</h5>
               <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -31,7 +35,7 @@
                   <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
+                  <a class="nav-link" href="{% url 'dailly' %}">ADD SALES</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
@@ -68,18 +72,19 @@
       </nav>
        
        {% block content %}
-       <div style="margin-top: 100px;">
+       <div style="margin-top: 100px; margin-bottom: 30px;">
 
            <div class="container-inhome">
-               home
+              
                <br>
                <br>
-               <h1>hoem</h1>
-               <div class="card">
+               <h1 style="color: green;">CATEGORY</h1>
+
+               <div class="card container">
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
+                      <th scope="col">NO</th>
                       <th scope="col">category</th>
                       <th scope="col">production price</th>
                       
@@ -98,11 +103,12 @@
               </div>
               <hr>
               <br>
-              <div class="card">
+              <h1 style="color: rgb(24, 195, 207);">IN STORE</h1>
+              <div class="card container">
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
+                      <th scope="col">NO</th>
                       <th scope="col">category</th>
                       <th scope="col">in store day</th>
                       <th scope="col">qty</th>
@@ -116,7 +122,36 @@
                         <td scope="row">{{s.category}}</td>
                         <td scope="row">{{s.in_day}}</td>
                         <td scope="row">{{s.qty}}</td>
-                        <td scope="row">{{s.re_qty}}</td>
+                        <td scope="row">{{s.re_q}}</td>
+                      </tr>               
+                      {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <hr>
+              <br>
+              <h1 style="color: rgb(24, 67, 207);">SALES</h1>
+              <div class="card container">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">NO</th>
+                      <th scope="col">category</th>
+                      <th scope="col">DATE</th>
+                      <th scope="col">PRICE</th>
+                      <th scope="col">qty</th>
+                      <th scope="col">TOTAL</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for s in sales %}
+                    <tr>
+                        <td scope="row">{{forloop.counter}}</td>
+                        <td scope="row">{{s.category}}</td>
+                        <td scope="row">{{s.date}}</td>
+                        <td scope="row">{{s.sale_price}}</td>
+                        <td scope="row">{{s.qty}}</td>
+                        <td scope="row">{{s.total}}</td>
                       </tr>               
                       {% endfor %}
                   </tbody>
