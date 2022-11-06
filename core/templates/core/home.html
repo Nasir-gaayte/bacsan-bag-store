@@ -35,6 +35,12 @@
                   <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" href="{% url 'add_cat' %}">ADD CATEGORY</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'add_product' %}">ADD PRODUCTS</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" href="{% url 'dailly' %}">ADD SALES</a>
                 </li>
                 {% if user.is_authenticated %}

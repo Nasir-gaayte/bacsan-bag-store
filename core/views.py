@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import CategoryModel, SaleModel, StoreModel
-from .forms import SaleForm
+from .forms import SaleForm, Storeform, Categoryform
 import math
 # Create your views here.
 
@@ -21,8 +21,10 @@ def home(request):
         for y in sales:
             x.re_q= ''
             total = int(x.qty-y.qty)
+            print(total)
             x.re_q = total
             x.save()
+            print(x.re_q)
             
       
        
@@ -31,8 +33,8 @@ def home(request):
          
     for s in sales:
         s.total = ''
-        total = float(s.qty*s.sale_price)
-        s.total=total
+        totalss = float(s.qty*s.sale_price)
+        s.total=totalss
         s.save()
         
         
@@ -41,8 +43,8 @@ def home(request):
     #     ss =sum(float(co.total))
     #     print(ss)
         
-        
-    total_sales= sum(float(co.total) for co in sales)
+    all_sale = SaleModel.objects.all()
+    total_sales= sum(float(co.total) for co in all_sale)
         
     
         # ssss = math.fsum(sss)    
@@ -72,14 +74,36 @@ def home(request):
         'st':st,
         'sales':sales,
         'total_sales':total_sales,
+        
         })
     
     
 def add_sale(request):
     if request.method == "POST":
-        form= SaleForm(request.POST)
+        form= SaleForm(data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')
     form = SaleForm()
     return  render(request,'core/dailly.html',{'form':form})      
+
+
+
+def add_cat(request):
+    if request.method == "POST":
+        form = Categoryform(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    form = Categoryform()
+    return render(request,'core/add_cat.html',{'form':form})    
+
+
+def add_product(request):
+    if request.method == "POST":
+        form= Storeform(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect ('home')
+    form= Storeform()
+    return render(request,'core/add_product.html',{'form':form})    
