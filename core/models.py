@@ -10,6 +10,11 @@ class CategoryModel(models.Model):
     def __str__(self):
         return self. name 
     
+
+# class Total_in_storeModel(models.Model):
+#     category = models.ForeignKey(CategoryModel, on_delete=models.CASCADE)
+#     Rqty= models.OneToOneField(CategoryModel, on_delete=models.CASCADE)
+#     re_qty=models.IntegerField(null=True,blank=True)    
     
 class StoreModel(models.Model):
     category = models.ForeignKey(CategoryModel, on_delete=models.CASCADE)
@@ -17,8 +22,10 @@ class StoreModel(models.Model):
     qty = models.IntegerField()
     re_q= models.IntegerField(null=True, blank=True)
     
-    def __str__(self):
-        return f"we have {self.qty} of {self.category} is store"
+    
+    
+    # def __str__(self):
+    #     return f"we have {self.qty} of {self.category} is store"
     
 
 class SaleModel(models.Model):

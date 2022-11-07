@@ -11,21 +11,40 @@ def home(request):
     sales = SaleModel.objects.all()
     
     
+  
     
-    
-    
-    
-    
-    
-    for x in st:
-        for y in sales:
-            x.re_q= ''
-            total = int(x.qty-y.qty)
-            print(total)
-            x.re_q = total
-            x.save()
-            print(x.re_q)
+    # for x in toget:
+    #     for y in toget2:
+    #         xxx = ''
+    #         xx = int(x.qty-y.qty)
+    #         xxx = xx
+    #         print(xxx)
+    #         x.save()
             
+    
+    
+    for x in st:   
+        for y in sales:
+            if x.category == y.category:   
+                if x.re_q == 0:
+                     
+                        total = int(x.qty-y.qty)    
+                        x.re_q = total
+                        x.save()
+                elif x.re_q:
+                   
+                        total = int(x.re_q-y.qty) 
+                        print(total)
+                        x.re_q = total
+                        x.save()   
+                        print(total)
+                        
+                else:
+                    x.save()        
+                print(x.re_q)
+                print(y)
+                
+                
       
        
      
